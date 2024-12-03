@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { ICountriesResponse } from '../interfaces/countries-response/countries-response';
+import { CountriesList } from '../type/countries-list';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CountriesService {
-    constructor(private readonly _httpClient: HttpClient) {}
+    constructor(
+        private readonly _httpClient: HttpClient
+    ) { }
 
-    getCountries(): any {
+    getCountries(): Observable<CountriesList> {
         return this._httpClient
-            .get<any>('https://countriesnow.space/api/v0.1/countries/positions')
+            .get<ICountriesResponse>('https://countriesnow.space/api/v0.1/countries/positions')
             .pipe(
                 map(({ data }) => {
                     return data;
