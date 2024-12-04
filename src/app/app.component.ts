@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from './services/countries.service';
+import { StatesService } from './services/states.service';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,8 @@ import { CountriesService } from './services/countries.service';
 })
 export class AppComponent implements OnInit {
     constructor(
-        private readonly _countriesService: CountriesService
+        private readonly _countriesService: CountriesService,
+        private readonly _statesService: StatesService
     ) { }
 
     ngOnInit() {
@@ -16,6 +18,12 @@ export class AppComponent implements OnInit {
             .getCountries()
             .subscribe((countriesResponse: any) => {
                 console.log('countriesResponse', countriesResponse);
+            });
+
+        this._statesService
+            .getStates('Brazil')
+            .subscribe((statesResponse: any) => {
+                console.log('statesResponse', statesResponse);
             });
     }
 }
