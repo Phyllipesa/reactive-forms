@@ -1,8 +1,9 @@
 import { AddressTypeEnum } from "../enums/address-type.enum";
 import { MaritalStatusEnum } from "../enums/marital-status.enum";
 import { PhoneTypeEnum } from "../enums/phone-type.enum";
+import { UserListResponse } from "../type/user-list-response";
 
-export const usersList: any[] = [
+export const usersList: UserListResponse = [
     {
         name: 'Fulano',
         email: 'fulano@hotmail.com',
