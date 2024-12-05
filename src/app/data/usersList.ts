@@ -1,3 +1,4 @@
+import { AddressTypeEnum } from "../enums/address-type.enum";
 import { MaritalStatusEnum } from "../enums/marital-status.enum";
 import { PhoneTypeEnum } from "../enums/phone-type.enum";
 
@@ -32,7 +33,7 @@ export const usersList: any[] = [
         ],
         addressList: [
             {
-                type: 1, // -> Residencial
+                type: AddressTypeEnum.RESIDENTIAL, // -> Residencial
                 street: 'Rua de Tal',
                 complement: 'Próximo ao parque',
                 country: 'Brazil',
@@ -40,7 +41,7 @@ export const usersList: any[] = [
                 city: 'Ribeirão Preto',
             },
             {
-                type: 2, // -> Trabalho
+                type: AddressTypeEnum.WORK, // -> Trabalho
                 street: 'Avenida de Tal',
                 complement: 'Próximo ao centro comercial',
                 country: 'Brazil',
@@ -48,7 +49,7 @@ export const usersList: any[] = [
                 city: 'Santos',
             },
             {
-                type: 3, // -> Alternativo
+                type: AddressTypeEnum.ALTERNATIVE, // -> Alternativo
                 street: 'Estrada de Tal',
                 complement: 'Próximo ao shopping',
                 country: 'Brazil',
@@ -87,7 +88,7 @@ export const usersList: any[] = [
         ],
         addressList: [
             {
-                type: PhoneTypeEnum.MOBILE, // -> Trabalho
+                type: AddressTypeEnum.WORK, // -> Trabalho
                 street: 'Avenida de Tal',
                 complement: 'Próximo ao centro comercial',
                 country: 'Brazil',
@@ -121,7 +122,7 @@ export const usersList: any[] = [
         ],
         addressList: [
             {
-                type: 3, // -> Alternativo
+                type: AddressTypeEnum.ALTERNATIVE, // -> Alternativo
                 street: 'Estrada de Tal',
                 complement: 'Próximo ao shopping',
                 country: 'Brazil',
