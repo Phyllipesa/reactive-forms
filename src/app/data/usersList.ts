@@ -1,10 +1,12 @@
+import { MaritalStatusEnum } from "../enums/marital-status.enum";
+
 export const usersList: any[] = [
     {
         name: 'Fulano',
         email: 'fulano@hotmail.com',
         country: 'Brazil',
         state: 'São Paulo',
-        maritalStatus: 1, // -> Estado Civil // -> Solteiro
+        maritalStatus: MaritalStatusEnum.SINGLE, // -> Estado Civil // -> Solteiro
         monthlyIncome: 5000, // -> Renda Mensal
         birthDate: '25/02/1991',
         phoneList: [
@@ -71,7 +73,7 @@ export const usersList: any[] = [
         email: 'laura@hotmail.com',
         country: 'Brazil',
         state: 'São Paulo',
-        maritalStatus: 2, // -> Estado Civil // -> Casada
+        maritalStatus: MaritalStatusEnum.MARRIED, // -> Estado Civil // -> Casada
         monthlyIncome: 6000, // -> Renda Mensal
         birthDate: '12/12/1994',
         phoneList: [
@@ -105,7 +107,7 @@ export const usersList: any[] = [
         email: 'marcos@hotmail.com',
         country: 'Brazil',
         state: 'São Paulo',
-        maritalStatus: 3, // -> Estado Civil // -> Divorciado
+        maritalStatus: MaritalStatusEnum.DIVORCED, // -> Estado Civil // -> Divorciado
         monthlyIncome: 7000, // -> Renda Mensal
         birthDate: '11/11/1991',
         phoneList: [
