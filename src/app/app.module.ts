@@ -19,4 +19,4 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
