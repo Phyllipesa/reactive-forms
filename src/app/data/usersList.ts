@@ -1,4 +1,5 @@
 import { MaritalStatusEnum } from "../enums/marital-status.enum";
+import { PhoneTypeEnum } from "../enums/phone-type.enum";
 
 export const usersList: any[] = [
     {
@@ -11,19 +12,19 @@ export const usersList: any[] = [
         birthDate: '25/02/1991',
         phoneList: [
             {
-                type: 1, // -> Residencial
+                type: PhoneTypeEnum.RESIDENTIAL, // -> Residencial
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '1234-5678', // -> Número
             },
             {
-                type: 2, // -> Celular
+                type: PhoneTypeEnum.MOBILE, // -> Celular
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '91111-2222', // -> Número
             },
             {
-                type: 3, // -> Emergência
+                type: PhoneTypeEnum.EMERGENCY, // -> Emergência
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '93333-4444', // -> Número
@@ -78,7 +79,7 @@ export const usersList: any[] = [
         birthDate: '12/12/1994',
         phoneList: [
             {
-                type: 3, // -> Emergência
+                type: PhoneTypeEnum.EMERGENCY, // -> Emergência
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '93333-7777', // -> Número
@@ -86,7 +87,7 @@ export const usersList: any[] = [
         ],
         addressList: [
             {
-                type: 2, // -> Trabalho
+                type: PhoneTypeEnum.MOBILE, // -> Trabalho
                 street: 'Avenida de Tal',
                 complement: 'Próximo ao centro comercial',
                 country: 'Brazil',
@@ -112,7 +113,7 @@ export const usersList: any[] = [
         birthDate: '11/11/1991',
         phoneList: [
             {
-                type: 2, // -> Celular
+                type: PhoneTypeEnum.RESIDENTIAL, // -> Celular
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '91111-7777', // -> Número
