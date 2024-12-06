@@ -3,6 +3,8 @@ import { StatesService } from './services/states.service';
 import { CountriesService } from './services/countries.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/users.service';
+import { UserListResponse } from './type/user-list-response';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -10,6 +12,8 @@ import { UserService } from './services/users.service';
     styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+    usersList: UserListResponse = [];
+
     constructor(
         private readonly _citiesService: CitiesService,
         private readonly _statesService: StatesService,
@@ -18,28 +22,27 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this._countriesService
-            .getCountries()
-            .subscribe((countriesResponse: any) => {
-                console.log('countriesResponse', countriesResponse);
-            });
+        // this._countriesService
+        //     .getCountries()
+        //     .subscribe((countriesResponse: any) => {
+        //         console.log('countriesResponse', countriesResponse);
+        //     });
 
-        this._statesService
-            .getStates('Brazil')
-            .subscribe((statesResponse: any) => {
-                console.log('statesResponse', statesResponse);
-            });
+        // this._statesService
+        //     .getStates('Brazil')
+        //     .subscribe((statesResponse: any) => {
+        //         console.log('statesResponse', statesResponse);
+        //     });
 
-        this._citiesService
-            .getCities('Brazil', 'São Paulo')
-            .subscribe((citiesResponse: any) => {
-                console.log('citiesResponse', citiesResponse);
-            });
+        // this._citiesService
+        //     .getCities('Brazil', 'São Paulo')
+        //     .subscribe((citiesResponse: any) => {
+        //         console.log('citiesResponse', citiesResponse);
+        //     });
 
         this._usersService
             .getUsers()
-            .subscribe((usersListResponse: any) => {
-                console.log('usersResponse', usersListResponse);
-            });
+            .pipe(take(1))
+            .subscribe((usersListResponse: any) => this.usersList = usersListResponse);
     }
 }
