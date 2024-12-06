@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user-info-item.component.scss'
 })
 export class UserInfoItemComponent {
-  @Input() title: string = '';
-  @Input() text: string = '';
+  @Input() title: string | undefined | null = '';
+  @Input() text: string | undefined | null = '';
 }
