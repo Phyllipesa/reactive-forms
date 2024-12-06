@@ -13,6 +13,7 @@ import { take } from 'rxjs';
 })
 export class AppComponent implements OnInit {
     usersList: UserListResponse = [];
+    currentTabIndex: number = 0;  // Define qual aba do TabsGroup será mostrada ao carregar a pagina.
 
     constructor(
         private readonly _citiesService: CitiesService,
