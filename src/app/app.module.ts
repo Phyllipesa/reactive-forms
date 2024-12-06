@@ -8,6 +8,11 @@ import { ComponentsModule } from './components/components.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import localePt from '@angular/common/locales/pt'
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt-BR');
+
 @NgModule({
     declarations: [AppComponent],
     imports: [
