@@ -4,7 +4,9 @@
             <app-users-list [usersList]="usersList"></app-users-list>
 
             <mat-tab-group [(selectedIndex)]="currentTabIndex">
-                <mat-tab label="Geral">Geral</mat-tab>
+                <mat-tab label="Geral">
+                    <app-general-informations></app-general-informations>
+                </mat-tab>
                 <mat-tab label="Contato">Contato</mat-tab>
                 <mat-tab label="Dependente">Dependente</mat-tab>
             </mat-tab-group>
