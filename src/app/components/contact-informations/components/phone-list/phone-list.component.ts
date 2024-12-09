@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PhoneList } from '../../../../type/phone-list';
 
 @Component({
   selector: 'app-phone-list',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './phone-list.component.scss'
 })
 export class PhoneListComponent {
-
+  @Input({ required: true }) userPhoneList: PhoneList | undefined = [];
 }
