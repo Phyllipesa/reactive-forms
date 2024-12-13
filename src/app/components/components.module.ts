@@ -6,6 +6,7 @@ import { PhoneListComponent } from './contact-informations/components/phone-list
 import { AddressListComponent } from './contact-informations/components/address-list/address-list.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
+import { DependenceListComponent } from './dependence-list/dependence-list.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 
@@ -15,6 +16,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
         PhoneListComponent,
         AddressListComponent,
         UserInfoItemComponent,
+        DependenceListComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
     ],
@@ -25,6 +27,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
     ],
     exports: [
         UsersListComponent,
+        DependenceListComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
     ],
