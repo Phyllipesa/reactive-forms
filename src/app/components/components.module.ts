@@ -7,6 +7,7 @@ import { AddressListComponent } from './contact-informations/components/address-
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
 import { DependenceListComponent } from './dependence-list/dependence-list.component';
+import { ButtonsContainerComponent } from './buttons-container/buttons-container.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 
@@ -17,6 +18,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
         AddressListComponent,
         UserInfoItemComponent,
         DependenceListComponent,
+        ButtonsContainerComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
     ],
@@ -28,6 +30,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
     exports: [
         UsersListComponent,
         DependenceListComponent,
+        ButtonsContainerComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
     ],
