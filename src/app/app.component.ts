@@ -4,7 +4,9 @@ import { CitiesService } from './services/cities.service';
 import { StatesService } from './services/states.service';
 import { UserListResponse } from './type/user-list-response';
 import { CountriesService } from './services/countries.service';
+
 import { Component, OnInit } from '@angular/core';
+
 import { take } from 'rxjs';
 
 @Component({
@@ -16,7 +18,6 @@ export class AppComponent implements OnInit {
     isInEditMode: boolean = false;
 
     usersList: UserListResponse = [];
-    currentTabIndex: number = 0;  // Define qual aba do TabsGroup será mostrada ao carregar a pagina.
 
     userSelectedIndex: number | undefined;
     userSelected: IUser = {} as IUser;
@@ -59,7 +60,6 @@ export class AppComponent implements OnInit {
         if (userFound) {
             this.userSelectedIndex = userIndex;
             this.userSelected = structuredClone(userFound);
-            this.currentTabIndex = 0;
         }
     }
 
