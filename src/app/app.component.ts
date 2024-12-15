@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/users.service';
 import { UserListResponse } from './type/user-list-response';
 import { take } from 'rxjs';
+import { IUser } from './interfaces/user/user';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,9 @@ import { take } from 'rxjs';
 export class AppComponent implements OnInit {
     usersList: UserListResponse = [];
     currentTabIndex: number = 0;  // Define qual aba do TabsGroup será mostrada ao carregar a pagina.
+
+    userSelectedIndex: number | undefined;
+    userSelected: IUser = {} as IUser;
 
     constructor(
         private readonly _citiesService: CitiesService,
@@ -45,5 +49,15 @@ export class AppComponent implements OnInit {
             .getUsers()
             .pipe(take(1))
             .subscribe((usersListResponse: any) => this.usersList = usersListResponse);
+    }
+
+    onUserSelected(userIndex: number) {
+        const userFound = this.usersList[userIndex];
+
+        if (userFound) {
+            this.userSelectedIndex = userIndex;
+            this.userSelected = structuredClone(userFound);
+            this.currentTabIndex = 0;
+        }
     }
 }
