@@ -10,6 +10,7 @@ import { DependenceListComponent } from './dependence-list/dependence-list.compo
 import { ButtonsContainerComponent } from './buttons-container/buttons-container.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
+import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
         ButtonsContainerComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
+        UserInformationsContainerComponent,
     ],
     imports: [
         PipesModule,
@@ -33,6 +35,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
         ButtonsContainerComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
+        UserInformationsContainerComponent,
     ],
 })
 export class ComponentsModule { }
