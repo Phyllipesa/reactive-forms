@@ -11,7 +11,7 @@
                     <app-contact-informations [user]="usersList[0]"></app-contact-informations>
                 </mat-tab>
                 <mat-tab label="Dependente">
-                    <app-dependence-list></app-dependence-list>
+                    <app-dependence-list [dependentsList]="usersList[0]?.dependentsList"></app-dependence-list>
                 </mat-tab>
             </mat-tab-group>
         </mat-card-content>
