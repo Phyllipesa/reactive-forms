@@ -1,11 +1,11 @@
+import { IUser } from './interfaces/user/user';
+import { UserService } from './services/users.service';
 import { CitiesService } from './services/cities.service';
 import { StatesService } from './services/states.service';
+import { UserListResponse } from './type/user-list-response';
 import { CountriesService } from './services/countries.service';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/users.service';
-import { UserListResponse } from './type/user-list-response';
 import { take } from 'rxjs';
-import { IUser } from './interfaces/user/user';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +13,8 @@ import { IUser } from './interfaces/user/user';
     styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+    isInEditMode: boolean = false;
+
     usersList: UserListResponse = [];
     currentTabIndex: number = 0;  // Define qual aba do TabsGroup será mostrada ao carregar a pagina.
 
@@ -59,5 +61,13 @@ export class AppComponent implements OnInit {
             this.userSelected = structuredClone(userFound);
             this.currentTabIndex = 0;
         }
+    }
+
+    onCancelButton() {
+        this.isInEditMode = false;
+    }
+
+    onEditButton() {
+        this.isInEditMode = true;
     }
 }
