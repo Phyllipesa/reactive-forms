@@ -11,6 +11,7 @@ import { ButtonsContainerComponent } from './buttons-container/buttons-container
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 import { GeneralInformationsEditComponent } from './general-informations-edit/general-informations-edit.component';
+import { ContactInformationsEditComponent } from './contact-informations-edit/contact-informations-edit.component';
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         GeneralInformationsComponent,
         ContactInformationsComponent,
         GeneralInformationsEditComponent,
+        ContactInformationsEditComponent,
         UserInformationsContainerComponent,
     ],
     imports: [
@@ -35,8 +37,8 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         UsersListComponent,
         DependenceListComponent,
         ButtonsContainerComponent,
-        GeneralInformationsComponent,
         ContactInformationsComponent,
+        GeneralInformationsComponent,
         UserInformationsContainerComponent,
     ],
 })
