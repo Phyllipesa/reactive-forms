@@ -13,6 +13,7 @@ import { ContactInformationsComponent } from './contact-informations/contact-inf
 import { GeneralInformationsEditComponent } from './general-informations-edit/general-informations-edit.component';
 import { ContactInformationsEditComponent } from './contact-informations-edit/contact-informations-edit.component';
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
+import { PhoneListEditComponent } from './contact-informations-edit/components/phone-list-edit/phone-list-edit.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         GeneralInformationsEditComponent,
         ContactInformationsEditComponent,
         UserInformationsContainerComponent,
+        PhoneListEditComponent,
     ],
     imports: [
         PipesModule,
