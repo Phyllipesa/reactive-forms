@@ -5,9 +5,9 @@ import { IUser } from "../../interfaces/user/user";
 import { IPhone } from "../../interfaces/user/phone";
 import { IAddress } from "../../interfaces/user/address";
 import { PhoneList } from "../../type/phone-list";
+import { IDependent } from "../../interfaces/user/dependent";
 import { AddressList } from "../../type/address-list";
 import { DependentsList } from "../../type/dependents-list";
-import { IDependent } from "../../interfaces/user/dependent";
 
 export class UserFormController {
     userForm!: FormGroup;
@@ -35,14 +35,34 @@ export class UserFormController {
     }
 
     fulfillUserForm(user: IUser) {
+        this.resetUserForm();
         this.fulfillGeneralInformations(user);
         this.fulfillPhoneList(user.phoneList);
         this.fulfillAddressList(user.addressList);
         this.fulfillDependentsList(user.dependentsList);
-        console.log(this.userForm);
     }
 
-    fulfillDependentsList(userDependentsList: DependentsList) {
+    /**
+     * Na parte de seleção de usuários, quando selecionamos um segundo usuário 
+     * há uma duplicação de dados no formulário, por isso, é necessário resetar
+     * o formulário a cada seleção para evitar duplicação de dados.
+     */
+    private resetUserForm() {
+        this.userForm.reset(); //Reseta o FormGroup
+
+        this.generalInformations.reset();
+
+        this.phoneList.reset();
+        this.phoneList.clear(); // o clear remove todos os controles de um FormArray
+
+        this.addressList.reset();
+        this.addressList.clear();
+
+        this.dependentsList.reset();
+        this.dependentsList.clear();
+    }
+
+    private fulfillDependentsList(userDependentsList: DependentsList) {
         userDependentsList.forEach((dependent: IDependent) => {
             this.dependentsList.push(this._fb.group({
                 name: [dependent.name, Validators.required],
@@ -52,7 +72,7 @@ export class UserFormController {
         });
     }
 
-    fulfillAddressList(addressList: AddressList) {
+    private fulfillAddressList(addressList: AddressList) {
         addressList.forEach((address: IAddress) => {
             this.addressList.push(this._fb.group({
                 type: [address.type, Validators.required],
