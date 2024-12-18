@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { UsersListComponent } from './users-list/users-list.component';
 import { PhoneListComponent } from './contact-informations/components/phone-list/phone-list.component';
 import { AddressListComponent } from './contact-informations/components/address-list/address-list.component';
@@ -10,12 +12,12 @@ import { PhoneListEditComponent } from './contact-informations-edit/components/p
 import { DependenceListComponent } from './dependence-list/dependence-list.component';
 import { AddressListEditComponent } from './contact-informations-edit/components/address-list-edit/address-list-edit.component';
 import { ButtonsContainerComponent } from './buttons-container/buttons-container.component';
+import { DependentsListEditComponent } from './dependents-list-edit/dependents-list-edit.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 import { GeneralInformationsEditComponent } from './general-informations-edit/general-informations-edit.component';
 import { ContactInformationsEditComponent } from './contact-informations-edit/contact-informations-edit.component';
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
-import { DependentsListEditComponent } from './dependents-list-edit/dependents-list-edit.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,7 @@ import { DependentsListEditComponent } from './dependents-list-edit/dependents-l
     imports: [
         PipesModule,
         CommonModule,
+        ReactiveFormsModule,
         AngularMaterialModule,
     ],
     exports: [
