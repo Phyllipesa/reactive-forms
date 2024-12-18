@@ -1,6 +1,8 @@
 import { inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IUser } from "../../interfaces/user/user";
+import { PhoneList } from "../../type/phone-list";
+import { IPhone } from "../../interfaces/user/phone";
 
 export class UserFormController {
     userForm!: FormGroup;
@@ -15,8 +17,24 @@ export class UserFormController {
         return this.userForm.get('generalInformations') as FormGroup;
     }
 
+    get phoneList() {
+        return this.userForm.get('contactInformations.phoneList') as FormArray;
+    }
+
     fulfillUserForm(user: IUser) {
         this.fulfillGeneralInformations(user)
+        this.fulfillPhoneList(user.phoneList);
+    }
+    
+    private fulfillPhoneList(userphoneList: PhoneList) {
+        userphoneList.forEach((phone: IPhone) => {
+            this.phoneList.push(this._fb.group({
+                type: [phone.type, Validators.required],
+                areaCode: [phone.areaCode, Validators.required],
+                internationalCode: [phone.internationalCode, Validators.required],
+                number: [phone.number, Validators.required],
+            }));
+        });
     }
 
     private fulfillGeneralInformations(user: IUser) {
