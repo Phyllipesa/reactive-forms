@@ -3,9 +3,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { IUser } from "../../interfaces/user/user";
 import { IPhone } from "../../interfaces/user/phone";
+import { IAddress } from "../../interfaces/user/address";
 import { PhoneList } from "../../type/phone-list";
 import { AddressList } from "../../type/address-list";
-import { IAddress } from "../../interfaces/user/address";
+import { DependentsList } from "../../type/dependents-list";
+import { IDependent } from "../../interfaces/user/dependent";
 
 export class UserFormController {
     userForm!: FormGroup;
@@ -28,10 +30,26 @@ export class UserFormController {
         return this.userForm.get('contactInformations.addressList') as FormArray;
     }
 
+    get dependentsList() {
+        return this.userForm.get('dependentsList') as FormArray;
+    }
+
     fulfillUserForm(user: IUser) {
         this.fulfillGeneralInformations(user);
         this.fulfillPhoneList(user.phoneList);
-        this.fulfillAddressList(user.addressList);       
+        this.fulfillAddressList(user.addressList);
+        this.fulfillDependentsList(user.dependentsList);
+        console.log(this.userForm);
+    }
+
+    fulfillDependentsList(userDependentsList: DependentsList) {
+        userDependentsList.forEach((dependent: IDependent) => {
+            this.dependentsList.push(this._fb.group({
+                name: [dependent.name, Validators.required],
+                age: [dependent.age, Validators.required],
+                document: [dependent.document, Validators.required],
+            }));
+        });
     }
 
     fulfillAddressList(addressList: AddressList) {
@@ -80,5 +98,4 @@ export class UserFormController {
             dependentsList: this._fb.array([]),
         })
     }
-
 }
