@@ -1,6 +1,7 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
+import { StatesList } from '../../type/states-list';
 import { CountriesList } from '../../type/countries-list';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -10,17 +11,23 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
     styleUrl: './general-informations-edit.component.scss'
 })
 export class GeneralInformationsEditComponent implements OnInit, OnChanges {
+    statesListFiltered: StatesList = [];
+    countriesListFiltered: CountriesList = [];
+
     @Input({ required: true }) userForm!: FormGroup;
     @Input({ required: true }) countriesList: CountriesList = [];
-    countriesListFiltered: CountriesList = [];
+    @Input({ required: true }) statesList: StatesList = [];
+
+    @Output('onCountrySelected') onCountrySelectedEmitt = new EventEmitter<string>();
 
     ngOnInit() {
         this.watchCountryFormChangeAndFilter();
-        console.log(this.userForm);
+        this.watchStateFormChangeAndFilter();
     }
 
     ngOnChanges(changes: SimpleChanges) {
         this.countriesListFiltered = this.countriesList;
+        this.statesListFiltered = this.statesList;
     }
 
     get emailControl(): FormControl {
@@ -31,7 +38,15 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
         return this.userForm.get('generalInformations.country') as FormControl;
     }
 
+    get stateControl(): FormControl {
+        return this.userForm.get('generalInformations.state') as FormControl;
+    }
+
     onCountrySelected(event: MatAutocompleteSelectedEvent) {
+        this.onCountrySelectedEmitt.emit(event.option.value);
+    }
+
+    onStateSelected(event: MatAutocompleteSelectedEvent) {
         console.log(event.option.value);
     }
 
@@ -42,15 +57,25 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
      * 
      * Para resolver isso, podemos usar o bind para passar o contexto da classe 
      *  - this.filterCountriesList.bind(this)
-     */
+    */
     private watchCountryFormChangeAndFilter() {
-        this.countryControl.valueChanges.subscribe(this.filterCountriesList.bind(this)); // 
+        this.countryControl.valueChanges.subscribe(this.filterCountriesList.bind(this));
         // this.countryControl.valueChanges.subscribe((value: string ) => this.filterCountriesList(value));
+    }
+
+    private watchStateFormChangeAndFilter() {
+        this.stateControl.valueChanges.subscribe(this.filterStatesList.bind(this));
     }
 
     private filterCountriesList(searchTerm: string) {
         this.countriesListFiltered = this.countriesList.filter(
             (country) => country.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
+        );
+    }
+
+    private filterStatesList(searchTerm: string) {
+        this.statesListFiltered = this.statesList.filter(
+            (state) => state.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
         );
     }
 }
