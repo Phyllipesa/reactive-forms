@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 
 import { StatesList } from '../../type/states-list';
 import { CountriesList } from '../../type/countries-list';
+import { maritalStatusArray } from '../../utils/marital-type-description-map';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
@@ -28,6 +29,10 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         this.countriesListFiltered = this.countriesList;
         this.statesListFiltered = this.statesList;
+    }
+
+    get maritalStatusArray() {
+        return maritalStatusArray;
     }
 
     get emailControl(): FormControl {
