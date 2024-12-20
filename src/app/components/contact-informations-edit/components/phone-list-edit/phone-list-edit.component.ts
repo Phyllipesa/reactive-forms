@@ -1,6 +1,6 @@
-import { FormGroup } from '@angular/forms';
-
 import { Component, Input } from '@angular/core';
+
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-phone-list-edit',
@@ -9,4 +9,8 @@ import { Component, Input } from '@angular/core';
 })
 export class PhoneListEditComponent {
     @Input({ required: true }) userForm!: FormGroup;
+
+    get phoneList() {
+        return this.userForm.get('contactInformations.phoneList') as FormArray;
+    };
 }
