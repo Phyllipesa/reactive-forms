@@ -27,7 +27,7 @@ export class UserInformationsContainerComponent extends UserFormController imple
 
     ngOnInit() {
         this.getCountriesList();
-    }
+    };
 
     ngOnChanges(changes: SimpleChanges) {
         this.currentTabIndex = 0;
@@ -37,22 +37,22 @@ export class UserInformationsContainerComponent extends UserFormController imple
         if (HAS_USER_SELECTED) {
             this.fulfillUserForm(this.userSelected);
             this.getStatesList(this.userSelected.country);
-        }
-    }
+        };
+    };
 
     onCountrySelected(contryName: string) {
         this.getStatesList(contryName);
-    }
+    };
 
     private getStatesList(country: string) {
         this._statesService.getStates(country).pipe(take(1)).subscribe((statesList: StatesList) => {
             this.statesList = statesList;
         });
-    }
+    };
 
     private getCountriesList() {
         this._countriesService.getCountries().pipe(take(1)).subscribe((countriesList: CountriesList) => {
-            this.countriesList = countriesList
+            this.countriesList = countriesList;
         });
-    }
+    };
 }

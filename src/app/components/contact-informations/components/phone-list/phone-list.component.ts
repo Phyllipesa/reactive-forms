@@ -14,7 +14,6 @@ export class PhoneListComponent implements OnChanges {
 
 	@Input({ required: true }) userPhoneList: PhoneList | undefined = [];
 
-
 	ngOnChanges(changes: SimpleChanges) {
 		const PHONE_LIST_LOADED = Array.isArray(changes['userPhoneList'].currentValue);
 
@@ -28,8 +27,8 @@ export class PhoneListComponent implements OnChanges {
 
 		const originalUserPhoneList = this.userPhoneList && this.userPhoneList.length > 0 ? this.userPhoneList : [];
 
-		preparePhoneList(originalUserPhoneList, (phone) => {
+		preparePhoneList(originalUserPhoneList, true, (phone) => {
 			this.phoneListToDisplay.push(phone);
 		});
 	};
-}
+};
