@@ -1,13 +1,15 @@
 import { inject } from "@angular/core";
+
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { IUser } from "../../interfaces/user/user";
-import { IPhone } from "../../interfaces/user/phone";
 import { IAddress } from "../../interfaces/user/address";
 import { PhoneList } from "../../type/phone-list";
 import { IDependent } from "../../interfaces/user/dependent";
 import { AddressList } from "../../type/address-list";
+import { PhoneTypeEnum } from "../../enums/phone-type.enum";
 import { DependentsList } from "../../type/dependents-list";
+import { preparePhoneList } from "../../utils/prepare-phone-list";
 import { convertPtBrDateToDateObj } from "../../utils/convert-pt-br-date-to-date-obj";
 
 export class UserFormController {
@@ -19,23 +21,23 @@ export class UserFormController {
 
     constructor() {
         this.createUserForm();
-    }
+    };
 
     get generalInformations() {
         return this.userForm.get('generalInformations') as FormGroup;
-    }
+    };
 
     get phoneList() {
         return this.userForm.get('contactInformations.phoneList') as FormArray;
-    }
+    };
 
     get addressList() {
         return this.userForm.get('contactInformations.addressList') as FormArray;
-    }
+    };
 
     get dependentsList() {
         return this.userForm.get('dependentsList') as FormArray;
-    }
+    };
 
     fulfillUserForm(user: IUser) {
         this.resetUserForm();
@@ -43,7 +45,7 @@ export class UserFormController {
         this.fulfillPhoneList(user.phoneList);
         this.fulfillAddressList(user.addressList);
         this.fulfillDependentsList(user.dependentsList);
-    }
+    };
 
     /**
      * Na parte de seleção de usuários, quando selecionamos um segundo usuário 
@@ -63,7 +65,7 @@ export class UserFormController {
 
         this.dependentsList.reset();
         this.dependentsList.clear();
-    }
+    };
 
     private fulfillDependentsList(userDependentsList: DependentsList) {
         userDependentsList.forEach((dependent: IDependent) => {
@@ -73,7 +75,7 @@ export class UserFormController {
                 document: [dependent.document, Validators.required],
             }));
         });
-    }
+    };
 
     private fulfillAddressList(addressList: AddressList) {
         addressList.forEach((address: IAddress) => {
@@ -85,19 +87,19 @@ export class UserFormController {
                 state: [address.state, Validators.required],
                 city: [address.city, Validators.required],
             }));
-        })
-    }
+        });
+    };
     
     private fulfillPhoneList(userphoneList: PhoneList) {
-        userphoneList.forEach((phone: IPhone) => {
+        preparePhoneList(userphoneList, false, (phone) => {
+            const phoneValidators = phone.type === PhoneTypeEnum.EMERGENCY ? [] : [Validators.required];
             this.phoneList.push(this._fb.group({
-                type: [phone.type, Validators.required],
-                areaCode: [phone.areaCode, Validators.required],
-                internationalCode: [phone.internationalCode, Validators.required],
-                number: [phone.number, Validators.required],
+                type: [phone.type],
+                typeDescription: [phone.typeDescription],
+                number: [phone.phoneNumber, phoneValidators,]
             }));
         });
-    }
+    };
 
     private fulfillGeneralInformations(user: IUser) {
         const newuser = {
@@ -106,7 +108,7 @@ export class UserFormController {
         };
 
         this.generalInformations.patchValue(newuser);
-    }
+    };
 
     private createUserForm() {
         this.userForm = this._fb.group({
@@ -124,6 +126,6 @@ export class UserFormController {
                 addressList: this._fb.array([]),
             }),
             dependentsList: this._fb.array([]),
-        })
-    }
-}
+        });
+    };
+};
