@@ -115,7 +115,7 @@ export const usersList: UserListResponse = [
         birthDate: '11/11/1991',
         phoneList: [
             {
-                type: PhoneTypeEnum.RESIDENTIAL, // -> Celular
+                type: PhoneTypeEnum.MOBILE, // -> Celular
                 areaCode: '11', // -> DDD
                 internationalCode: '+55', // -> DDI
                 number: '91111-7777', // -> Número
