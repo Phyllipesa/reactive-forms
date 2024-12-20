@@ -2,24 +2,28 @@
     <mat-tab label="Geral">
         <app-general-informations
             *ngIf="!isInEditMode"
-            [user]="userSelected">
-        </app-general-informations>
+            [user]="userSelected"
+        ></app-general-informations>
         <app-general-informations-edit
             *ngIf="isInEditMode"
             [userForm]="userForm"
             [countriesList]="countriesList"
             [statesList]="statesList"
             (onCountrySelected)="onCountrySelected($event)"
-            ></app-general-informations-edit>
+        ></app-general-informations-edit>
     </mat-tab>
     <mat-tab label="Contato">
-        <app-contact-informations [user]="userSelected">
-        </app-contact-informations>
-        <app-contact-informations-edit></app-contact-informations-edit>
+        <app-contact-informations
+            [user]="userSelected"
+        ></app-contact-informations>
+        <app-contact-informations-edit
+            [userForm]="userForm"
+        ></app-contact-informations-edit>
     </mat-tab>
     <mat-tab label="Dependente">
-        <app-dependence-list [dependentsList]="userSelected.dependentsList">
-        </app-dependence-list>
+        <app-dependence-list
+            [dependentsList]="userSelected.dependentsList"
+        ></app-dependence-list>
         <app-dependents-list-edit></app-dependents-list-edit>
     </mat-tab>
 </mat-tab-group>
