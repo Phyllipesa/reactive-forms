@@ -3,6 +3,8 @@ import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
 import { UsersListComponent } from './users-list/users-list.component';
 import { PhoneListComponent } from './contact-informations/components/phone-list/phone-list.component';
 import { AddressListComponent } from './contact-informations/components/address-list/address-list.component';
@@ -39,6 +41,7 @@ import { UserInformationsContainerComponent } from './user-informations-containe
     imports: [
         PipesModule,
         CommonModule,
+        NgxMaskDirective,
         ReactiveFormsModule,
         AngularMaterialModule,
     ],
@@ -49,6 +52,9 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         ContactInformationsComponent,
         GeneralInformationsComponent,
         UserInformationsContainerComponent,
+    ],
+    providers: [
+        provideNgxMask(),
     ],
 })
 export class ComponentsModule { }
