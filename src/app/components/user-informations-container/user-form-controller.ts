@@ -48,6 +48,10 @@ export class UserFormController {
         this.fulfillDependentsList(user.dependentsList);
     };
 
+    removeDependent(dependentIndex: number) {
+        this.dependentsList.removeAt(dependentIndex);
+    };
+
     /**
      * Na parte de seleção de usuários, quando selecionamos um segundo usuário 
      * há uma duplicação de dados no formulário, por isso, é necessário resetar
