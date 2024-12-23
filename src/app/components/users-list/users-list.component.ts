@@ -15,6 +15,8 @@ export class UsersListComponent {
 	@Output('onUserSelected') onUserSelectedEmitt = new EventEmitter<number>();
 
 	onUserSelected(userIndex: number) {
+		if (this.isInEditMode) return;
+
 		this.userSelectedIndex = userIndex;
 		this.onUserSelectedEmitt.emit(userIndex);
 	};
