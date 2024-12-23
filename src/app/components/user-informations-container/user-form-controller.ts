@@ -3,13 +3,13 @@ import { inject } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { IUser } from "../../interfaces/user/user";
-import { IAddress } from "../../interfaces/user/address";
 import { PhoneList } from "../../type/phone-list";
 import { IDependent } from "../../interfaces/user/dependent";
 import { AddressList } from "../../type/address-list";
 import { PhoneTypeEnum } from "../../enums/phone-type.enum";
 import { DependentsList } from "../../type/dependents-list";
 import { preparePhoneList } from "../../utils/prepare-phone-list";
+import { prepareAddressList } from "../../utils/prepared-address-list";
 import { convertPtBrDateToDateObj } from "../../utils/convert-pt-br-date-to-date-obj";
 
 export class UserFormController {
@@ -77,15 +77,23 @@ export class UserFormController {
         });
     };
 
+    /**
+     * fulfillAddressList
+     * 
+     * A propriedade 'disabled' em 'typeDescription' é utilizada para desabilitar o campo de endereço.
+     * Caso seja necessário acessar a propriedade utilize:
+     *      this.addressList.getRawValue();
+     */
     private fulfillAddressList(addressList: AddressList) {
-        addressList.forEach((address: IAddress) => {
+        prepareAddressList(addressList, false, (address) => {
             this.addressList.push(this._fb.group({
-                type: [address.type, Validators.required],
-                street: [address.street, Validators.required],
-                complement: [address.complement, Validators.required],
-                country: [address.country, Validators.required],
-                state: [address.state, Validators.required],
-                city: [address.city, Validators.required],
+                type: [address.type],
+                typeDescription: [{ value: address.typeDescription, disabled: true }],
+                street: [address.street],
+                complement: [address.complement],
+                country: [address.country],
+                state: [address.state],
+                city: [address.city],
             }));
         });
     };
