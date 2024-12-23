@@ -10,22 +10,22 @@ import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angu
  * @returns  ValidationErrors | null
  */
 export const requiredAddressValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const addresGroup = control as FormGroup;
+    const addressGroup = control as FormGroup;
 
     const controlsToCheck = Object
-        .keys(addresGroup.controls)
+        .keys(addressGroup.controls)
         .filter(
             (controlKey) => controlKey !== 'type' && controlKey !== 'typeDescription'
         );
 
     const hasAnyText = controlsToCheck
-        .some((controlKey) => hasText(addresGroup.get(controlKey))
+        .some((controlKey) => hasText(addressGroup.get(controlKey))
         );
 
     for (const controlName of controlsToCheck) {
-        const control = addresGroup.get(controlName);
+        const control = addressGroup.get(controlName);
 
-        // !control.value retorna TRUE caso não exista nada escrito no campo.
+        //!control.value retorna TRUE caso não exista nada escrito no campo.
         if (control) {
             if (hasAnyText && !control.value) {
                 control.setErrors({ requiredAddressControl: true });
@@ -40,5 +40,5 @@ export const requiredAddressValidator: ValidatorFn = (control: AbstractControl):
 };
 
 const hasText = (control: AbstractControl | null): boolean => {
-    return !!control && control.value && control.value.toString().trim().lenght > 0;
+    return !!control && control.value && control.value.toString().trim().length > 0;
 };
