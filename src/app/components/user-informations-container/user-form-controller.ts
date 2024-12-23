@@ -48,8 +48,30 @@ export class UserFormController {
         this.fulfillDependentsList(user.dependentsList);
     };
 
+    addDependent() {
+        this.dependentsList.push(
+            this.createDependentGroup()
+        );
+    };
+
     removeDependent(dependentIndex: number) {
         this.dependentsList.removeAt(dependentIndex);
+    };
+
+    private createDependentGroup(dependent: IDependent | null = null) {
+        if(!dependent) {
+            return this._fb.group({
+                name: ['', Validators.required],
+                age: ['', Validators.required],
+                document: ['', Validators.required],
+            });
+        };
+
+        return this._fb.group({
+            name: [dependent.name, Validators.required],
+            age: [dependent.age, Validators.required],
+            document: [dependent.document, Validators.required],
+        });
     };
 
     /**
@@ -74,11 +96,9 @@ export class UserFormController {
 
     private fulfillDependentsList(userDependentsList: DependentsList) {
         userDependentsList.forEach((dependent: IDependent) => {
-            this.dependentsList.push(this._fb.group({
-                name: [dependent.name, Validators.required],
-                age: [dependent.age, Validators.required],
-                document: [dependent.document, Validators.required],
-            }));
+            this.dependentsList.push(
+                this.createDependentGroup(dependent)
+            );
         });
     };
 
