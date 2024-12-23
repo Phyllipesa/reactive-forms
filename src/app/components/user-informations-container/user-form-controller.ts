@@ -84,8 +84,8 @@ export class UserFormController {
      * Caso seja necessário acessar a propriedade utilize:
      *      this.addressList.getRawValue();
      */
-    private fulfillAddressList(addressList: AddressList) {
-        prepareAddressList(addressList, false, (address) => {
+    private fulfillAddressList(userAddressList: AddressList) {
+        prepareAddressList(userAddressList, false, (address) => {
             this.addressList.push(this._fb.group({
                 type: [address.type],
                 typeDescription: [{ value: address.typeDescription, disabled: true }],
