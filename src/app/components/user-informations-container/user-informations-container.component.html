@@ -28,6 +28,7 @@
         ></app-dependence-list>
         <app-dependents-list-edit
             [userForm]="userForm"
+            (onAddDependent)="addDependent()"
             (onRemoveDependent)="removeDependent($event)"
         ></app-dependents-list-edit>
     </mat-tab>
