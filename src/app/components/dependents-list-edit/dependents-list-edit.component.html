@@ -3,7 +3,8 @@
 
     <div>
         <button
-            class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-green-600 hover:bg-green-500">Novo Dependente
+            class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-green-600 hover:bg-green-500"
+        >Novo Dependente
         </button>
     </div>
 
@@ -28,8 +29,10 @@
                 </mat-form-field>
                 <div class="flex justify-center items-baseline box-border p-2">
                     <button
-                    class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500">Deletar
-                </button>
+                        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500"
+                        (click)="removeDependent(i)"
+                    >Deletar
+                    </button>
                 </div>
             </div>
         
