@@ -22,8 +22,9 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Documento:</mat-label>
-                    <input matInput placeholder="123.123.123-12" formControlName="document">
-                    <mat-error>O Documento é obrigatório.</mat-error>
+                    <input matInput placeholder="123.123.123-12" mask="000.000.000-00" formControlName="document">
+                    <mat-error *ngIf="dependent.get('document')?.hasError('required')">O Documento é obrigatório.</mat-error>
+                    <mat-error *ngIf="dependent.get('document')?.hasError('mask')">O Documento é inválido.</mat-error>
                 </mat-form-field>
                 <div class="flex justify-center items-baseline box-border p-2">
                     <button
