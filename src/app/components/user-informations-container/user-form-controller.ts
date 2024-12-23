@@ -11,6 +11,7 @@ import { DependentsList } from "../../type/dependents-list";
 import { preparePhoneList } from "../../utils/prepare-phone-list";
 import { prepareAddressList } from "../../utils/prepared-address-list";
 import { convertPtBrDateToDateObj } from "../../utils/convert-pt-br-date-to-date-obj";
+import { requiredAddressValidator } from "../../utils/user-form-validators/required-address-validator";
 
 export class UserFormController {
     userForm!: FormGroup;
@@ -94,6 +95,9 @@ export class UserFormController {
                 country: [address.country],
                 state: [address.state],
                 city: [address.city],
+            },
+            {
+                validators: requiredAddressValidator
             }));
         });
     };
