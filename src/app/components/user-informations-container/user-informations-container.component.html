@@ -21,7 +21,15 @@
         ></app-general-informations-edit>
     </mat-tab>
 
-    <mat-tab label="Contato">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Contato
+            <mat-icon 
+                class="red-circle-icon"
+                color="warn"
+                *ngIf="isInEditMode && !contactInformationsValid"
+            >circle</mat-icon>
+        </ng-template>
         <app-contact-informations
             *ngIf="!isInEditMode"
             [user]="userSelected"
