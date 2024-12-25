@@ -1,5 +1,13 @@
 <mat-tab-group [(selectedIndex)]="currentTabIndex">
-    <mat-tab label="Geral">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Geral
+            <mat-icon 
+                class="red-circle-icon"
+                color="warn"
+                *ngIf="isInEditMode && !generalInformationsValid"
+            >circle</mat-icon>
+        </ng-template>
         <app-general-informations
             *ngIf="!isInEditMode"
             [user]="userSelected"
@@ -12,6 +20,7 @@
             (onCountrySelected)="onCountrySelected($event)"
         ></app-general-informations-edit>
     </mat-tab>
+
     <mat-tab label="Contato">
         <app-contact-informations
             *ngIf="!isInEditMode"
@@ -23,6 +32,7 @@
         ></app-contact-informations-edit>
     </mat-tab>
     <mat-tab label="Dependente">
+
         <app-dependence-list
             [dependentsList]="userSelected.dependentsList"
         ></app-dependence-list>
