@@ -16,6 +16,7 @@ import { take } from 'rxjs';
 })
 export class AppComponent implements OnInit {
     isInEditMode: boolean = false;
+    enableSaveButton: boolean = false;
 
     usersList: UserListResponse = [];
 
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
         private readonly _statesService: StatesService,
         private readonly _countriesService: CountriesService,
         private readonly _usersService: UserService,
-    ) { }
+    ) { };
 
     ngOnInit() {
         // this._countriesService
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit {
             .getUsers()
             .pipe(take(1))
             .subscribe((usersListResponse: any) => this.usersList = usersListResponse);
-    }
+    };
 
     onUserSelected(userIndex: number) {
         const userFound = this.usersList[userIndex];
@@ -60,14 +61,18 @@ export class AppComponent implements OnInit {
         if (userFound) {
             this.userSelectedIndex = userIndex;
             this.userSelected = structuredClone(userFound);
-        }
-    }
+        };
+    };
 
     onCancelButton() {
         this.isInEditMode = false;
-    }
+    };
 
     onEditButton() {
         this.isInEditMode = true;
-    }
+    };
+
+    onFormStatusChange(formStatus: boolean) {
+        setTimeout(() => this.enableSaveButton = formStatus, 0);
+    };
 }
