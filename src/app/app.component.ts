@@ -17,6 +17,7 @@ import { take } from 'rxjs';
 export class AppComponent implements OnInit {
     isInEditMode: boolean = false;
     enableSaveButton: boolean = false;
+    userFormUpdated: boolean = false;
 
     usersList: UserListResponse = [];
 
@@ -74,5 +75,9 @@ export class AppComponent implements OnInit {
 
     onFormStatusChange(formStatus: boolean) {
         setTimeout(() => this.enableSaveButton = formStatus, 0);
+    };
+
+    onUserFormFirstChange() {
+        this.userFormUpdated = true;
     };
 }
