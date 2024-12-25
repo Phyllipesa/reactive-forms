@@ -39,8 +39,16 @@
             [userForm]="userForm"
         ></app-contact-informations-edit>
     </mat-tab>
-    <mat-tab label="Dependente">
 
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Dependente
+            <mat-icon 
+                class="red-circle-icon"
+                color="warn"
+                *ngIf="isInEditMode && !dependentsListValid"
+            >circle</mat-icon>
+        </ng-template>
         <app-dependence-list
             [dependentsList]="userSelected.dependentsList"
         ></app-dependence-list>
