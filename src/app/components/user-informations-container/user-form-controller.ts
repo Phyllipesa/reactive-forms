@@ -28,6 +28,10 @@ export class UserFormController {
         return this.userForm.get('generalInformations') as FormGroup;
     };
 
+    get contactInformations() {
+        return this.userForm.get('contactInformations') as FormGroup;
+    };
+
     get phoneList() {
         return this.userForm.get('contactInformations.phoneList') as FormArray;
     };
@@ -42,6 +46,10 @@ export class UserFormController {
 
     get generalInformationsValid(): boolean {
         return this.generalInformations.valid;
+    };
+
+    get contactInformationsValid(): boolean {
+        return this.contactInformations.valid;
     };
 
     fulfillUserForm(user: IUser) {
