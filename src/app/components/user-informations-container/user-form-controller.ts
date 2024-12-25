@@ -62,6 +62,9 @@ export class UserFormController {
         this.fulfillPhoneList(user.phoneList);
         this.fulfillAddressList(user.addressList);
         this.fulfillDependentsList(user.dependentsList);
+
+        this.userForm.markAllAsTouched(); // Marca todos os campos dos forms como touched
+        this.userForm.updateValueAndValidity(); // Roda os validadores com valores dos forms já atualizados.
     };
 
     addDependent() {
@@ -96,12 +99,12 @@ export class UserFormController {
      * o formulário a cada seleção para evitar duplicação de dados.
      */
     private resetUserForm() {
-        this.userForm.reset(); //Reseta o FormGroup
+        this.userForm.reset(); // Reseta o FormGroup
 
         this.generalInformations.reset();
 
         this.phoneList.reset();
-        this.phoneList.clear(); // o clear remove todos os controles de um FormArray
+        this.phoneList.clear(); // O clear remove todos os controles de um FormArray
 
         this.addressList.reset();
         this.addressList.clear();
