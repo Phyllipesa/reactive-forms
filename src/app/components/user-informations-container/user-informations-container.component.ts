@@ -1,6 +1,6 @@
 import { distinctUntilChanged, take } from 'rxjs';
 
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { IUser } from '../../interfaces/user/user';
 import { StatesList } from '../../type/states-list';
@@ -24,6 +24,8 @@ export class UserInformationsContainerComponent extends UserFormController imple
 
     @Input({ required: true }) isInEditMode: boolean = false;
     @Input({ required: true }) userSelected: IUser = {} as IUser;
+
+    @Output('onFormStatusChange') onFormStatusChangeEmitt = new EventEmitter<boolean>();
 
     ngOnInit() {
         this.onUserFormStatusChange();
@@ -63,18 +65,20 @@ export class UserInformationsContainerComponent extends UserFormController imple
      *      this.userForm.statusChanges.pipe(distinctUntilChanged()).subscribe(console.log);
      */
     private onUserFormStatusChange() {
-        this.userForm.statusChanges.pipe(distinctUntilChanged()).subscribe(console.log);
+        this.userForm.statusChanges
+            .pipe(distinctUntilChanged())
+            .subscribe(() => this.onFormStatusChangeEmitt.emit(this.userForm.valid));
     };
 
     private getStatesList(country: string) {
-        this._statesService.getStates(country).pipe(take(1)).subscribe((statesList: StatesList) => {
-            this.statesList = statesList;
-        });
+        this._statesService.getStates(country)
+            .pipe(take(1))
+            .subscribe((statesList: StatesList) => this.statesList = statesList);
     };
 
     private getCountriesList() {
-        this._countriesService.getCountries().pipe(take(1)).subscribe((countriesList: CountriesList) => {
-            this.countriesList = countriesList;
-        });
+        this._countriesService.getCountries()
+            .pipe(take(1))
+            .subscribe((countriesList: CountriesList) => this.countriesList = countriesList);
     };
 }
