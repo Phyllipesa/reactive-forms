@@ -40,6 +40,10 @@ export class UserFormController {
         return this.userForm.get('dependentsList') as FormArray;
     };
 
+    get generalInformationsValid(): boolean {
+        return this.generalInformations.valid;
+    };
+
     fulfillUserForm(user: IUser) {
         this.resetUserForm();
         this.fulfillGeneralInformations(user);
