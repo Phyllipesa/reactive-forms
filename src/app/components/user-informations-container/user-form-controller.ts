@@ -52,6 +52,10 @@ export class UserFormController {
         return this.contactInformations.valid;
     };
 
+    get dependentsListValid(): boolean {
+        return this.dependentsList.valid;
+    };
+
     fulfillUserForm(user: IUser) {
         this.resetUserForm();
         this.fulfillGeneralInformations(user);
