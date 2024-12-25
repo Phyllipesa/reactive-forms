@@ -1,4 +1,4 @@
-import { take } from 'rxjs';
+import { distinctUntilChanged, take } from 'rxjs';
 
 import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
@@ -26,6 +26,7 @@ export class UserInformationsContainerComponent extends UserFormController imple
     @Input({ required: true }) userSelected: IUser = {} as IUser;
 
     ngOnInit() {
+        this.onUserFormStatusChange();
         this.getCountriesList();
     };
 
@@ -42,6 +43,27 @@ export class UserInformationsContainerComponent extends UserFormController imple
 
     onCountrySelected(contryName: string) {
         this.getStatesList(contryName);
+    };
+
+    /**
+     * onUserFormStatusChange
+     * 
+     * O objetivo do método é monitorar o status(Valid/Invalid) do useForm, porém
+     * dependendo de como feito mostrará o status de todos os campos assim que 
+     * forem verificados por seus validadores, causando assim inumeras chamadas desnecessárias
+     * como mostra o código a seguir ao utiliza-lo.
+     * 
+     * Exemplo: 
+     *      this.userForm.statusChanges.subscribe(console.log);
+     * 
+     * A validação que deve ser monitorada é se o formulário é válido ou não, para
+     * isso, é necessário usar o método 'distinctUntilChanged' para que ele só mostre
+     * o status quando o formulário for válido ou não.
+     * 
+     *      this.userForm.statusChanges.pipe(distinctUntilChanged()).subscribe(console.log);
+     */
+    private onUserFormStatusChange() {
+        this.userForm.statusChanges.pipe(distinctUntilChanged()).subscribe(console.log);
     };
 
     private getStatesList(country: string) {
