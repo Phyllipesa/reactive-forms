@@ -107,6 +107,20 @@ export class AppComponent implements OnInit {
     };
 
     private saveUserInfos() {
-        console.log('Valores Alterados!');
+        const newUser: IUser = this.convertUserFormToUser();
+
+        this._updateUserService.updateUser(newUser)
+            .subscribe(
+                (newUserResponse: IUser) => {
+                    if (this.userSelectedIndex === undefined) return;
+
+                    this.usersList[this.userSelectedIndex] = newUserResponse;
+                }
+            );
     };
+    
+    private convertUserFormToUser(): IUser {
+        return {} as IUser;
+    }
+;
 }
