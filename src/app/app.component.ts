@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from './interfaces/user/user';
 import { UserService } from './services/users.service';
 import { UserListResponse } from './type/user-list-response';
+import { UpdateUserService } from './services/update-user-service';
 import { IDialogConfirmationData } from './interfaces/dialog-confirmation-data';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private readonly _usersService: UserService,
+        private readonly _updateUserService: UpdateUserService,
         private readonly _matDialog: MatDialog,
     ) { };
 
@@ -75,6 +77,8 @@ export class AppComponent implements OnInit {
             (value: boolean) => {
                 if (!value) return;
 
+                this.saveUserInfos();
+
                 this.isInEditMode = false;
                 this.userFormUpdated = false;
             }
@@ -100,5 +104,9 @@ export class AppComponent implements OnInit {
 
         const dialogRef = this._matDialog.open(ConfirmationDialogComponent, { data });
         dialogRef.afterClosed().subscribe(callback);
+    };
+
+    private saveUserInfos() {
+        console.log('Valores Alterados!');
     };
 }
