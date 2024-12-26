@@ -1,13 +1,13 @@
 import { IUser } from './interfaces/user/user';
 import { UserService } from './services/users.service';
-import { CitiesService } from './services/cities.service';
-import { StatesService } from './services/states.service';
 import { UserListResponse } from './type/user-list-response';
-import { CountriesService } from './services/countries.service';
+
+import { take } from 'rxjs';
 
 import { Component, OnInit } from '@angular/core';
 
-import { take } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'app-root',
@@ -25,31 +25,11 @@ export class AppComponent implements OnInit {
     userSelected: IUser = {} as IUser;
 
     constructor(
-        private readonly _citiesService: CitiesService,
-        private readonly _statesService: StatesService,
-        private readonly _countriesService: CountriesService,
         private readonly _usersService: UserService,
+        private readonly _matDialog: MatDialog,
     ) { };
 
     ngOnInit() {
-        // this._countriesService
-        //     .getCountries()
-        //     .subscribe((countriesResponse: any) => {
-        //         console.log('countriesResponse', countriesResponse);
-        //     });
-
-        // this._statesService
-        //     .getStates('Brazil')
-        //     .subscribe((statesResponse: any) => {
-        //         console.log('statesResponse', statesResponse);
-        //     });
-
-        // this._citiesService
-        //     .getCities('Brazil', 'São Paulo')
-        //     .subscribe((citiesResponse: any) => {
-        //         console.log('citiesResponse', citiesResponse);
-        //     });
-
         this._usersService
             .getUsers()
             .pipe(take(1))
@@ -66,6 +46,18 @@ export class AppComponent implements OnInit {
     };
 
     onCancelButton() {
+        if (this.userFormUpdated) {
+            this._matDialog.open(ConfirmationDialogComponent, {
+                data: {
+                    title: 'O Formulário foi alterado',
+                    message: 'Deseja realmente cancelar as alterações feitas no formulário?',
+                },
+            });
+        }
+        else {
+            this.isInEditMode = false;
+        };
+
         this.isInEditMode = false;
     };
 
