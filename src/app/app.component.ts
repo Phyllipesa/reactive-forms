@@ -47,18 +47,22 @@ export class AppComponent implements OnInit {
 
     onCancelButton() {
         if (this.userFormUpdated) {
-            this._matDialog.open(ConfirmationDialogComponent, {
+            const dialogRef = this._matDialog.open(ConfirmationDialogComponent, {
                 data: {
                     title: 'O Formulário foi alterado',
                     message: 'Deseja realmente cancelar as alterações feitas no formulário?',
                 },
             });
+
+            dialogRef.afterClosed().subscribe((value: boolean) => {
+                if (!value) return;
+                this.isInEditMode = false;
+                this.userFormUpdated = false;
+            });
         }
         else {
             this.isInEditMode = false;
         };
-
-        this.isInEditMode = false;
     };
 
     onEditButton() {
