@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
+import { PipesModule } from '../pipes/pipes.module';
 import { UsersListComponent } from './users-list/users-list.component';
 import { PhoneListComponent } from './contact-informations/components/phone-list/phone-list.component';
 import { AddressListComponent } from './contact-informations/components/address-list/address-list.component';
@@ -15,6 +15,7 @@ import { DependenceListComponent } from './dependence-list/dependence-list.compo
 import { AddressListEditComponent } from './contact-informations-edit/components/address-list-edit/address-list-edit.component';
 import { ButtonsContainerComponent } from './buttons-container/buttons-container.component';
 import { DependentsListEditComponent } from './dependents-list-edit/dependents-list-edit.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 import { GeneralInformationsEditComponent } from './general-informations-edit/general-informations-edit.component';
@@ -31,12 +32,13 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         DependenceListComponent,
         AddressListEditComponent,
         ButtonsContainerComponent,
+        DependentsListEditComponent,
+        ConfirmationDialogComponent,
         GeneralInformationsComponent,
         ContactInformationsComponent,
         GeneralInformationsEditComponent,
         ContactInformationsEditComponent,
         UserInformationsContainerComponent,
-        DependentsListEditComponent,
     ],
     imports: [
         PipesModule,
@@ -49,6 +51,7 @@ import { UserInformationsContainerComponent } from './user-informations-containe
         UsersListComponent,
         DependenceListComponent,
         ButtonsContainerComponent,
+        ConfirmationDialogComponent,
         ContactInformationsComponent,
         GeneralInformationsComponent,
         UserInformationsContainerComponent,
