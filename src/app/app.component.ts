@@ -1,12 +1,13 @@
-import { IUser } from './interfaces/user/user';
-import { UserService } from './services/users.service';
-import { UserListResponse } from './type/user-list-response';
-
 import { take } from 'rxjs';
+
+import { MatDialog } from '@angular/material/dialog';
 
 import { Component, OnInit } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
+import { IUser } from './interfaces/user/user';
+import { UserService } from './services/users.service';
+import { UserListResponse } from './type/user-list-response';
+import { IDialogConfirmationData } from './interfaces/dialog-confirmation-data';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -47,22 +48,37 @@ export class AppComponent implements OnInit {
 
     onCancelButton() {
         if (this.userFormUpdated) {
-            const dialogRef = this._matDialog.open(ConfirmationDialogComponent, {
-                data: {
+            this.openConfirmationDialog(
+                {
                     title: 'O Formulário foi alterado',
                     message: 'Deseja realmente cancelar as alterações feitas no formulário?',
                 },
-            });
+                (value: boolean) => {
+                    if (!value) return;
 
-            dialogRef.afterClosed().subscribe((value: boolean) => {
-                if (!value) return;
-                this.isInEditMode = false;
-                this.userFormUpdated = false;
-            });
+                    this.isInEditMode = false;
+                    this.userFormUpdated = false;
+                }
+            );
         }
         else {
             this.isInEditMode = false;
         };
+    };
+
+    onSaveButton() {
+        this.openConfirmationDialog(
+            {
+                title: 'Confirmar alteração de dados',
+                message: 'Deseja realmente salvar os valores alterados?',
+            },
+            (value: boolean) => {
+                if (!value) return;
+
+                this.isInEditMode = false;
+                this.userFormUpdated = false;
+            }
+        );
     };
 
     onEditButton() {
@@ -75,5 +91,14 @@ export class AppComponent implements OnInit {
 
     onUserFormFirstChange() {
         this.userFormUpdated = true;
+    };
+
+    private openConfirmationDialog(
+        data: IDialogConfirmationData,
+        callback: (value: boolean) => void
+    ) {
+
+        const dialogRef = this._matDialog.open(ConfirmationDialogComponent, { data });
+        dialogRef.afterClosed().subscribe(callback);
     };
 }
