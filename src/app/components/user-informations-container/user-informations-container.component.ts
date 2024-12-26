@@ -1,4 +1,4 @@
-import { distinctUntilChanged, take } from 'rxjs';
+import { distinctUntilChanged, Subscription, take } from 'rxjs';
 
 import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
@@ -18,6 +18,8 @@ export class UserInformationsContainerComponent extends UserFormController imple
     currentTabIndex: number = 0;  // Define qual aba do TabsGroup será mostrada ao carregar a pagina.
     statesList: StatesList = [];
     countriesList: CountriesList = [];
+
+    userFormValueChangesSubs!: Subscription;
 
     private readonly _statesService = inject(StatesService);
     private readonly _countriesService = inject(CountriesService);
@@ -39,6 +41,7 @@ export class UserInformationsContainerComponent extends UserFormController imple
         const HAS_USER_SELECTED = changes['userSelected'] && Object.keys(changes['userSelected'].currentValue).length > 0;
 
         if (HAS_USER_SELECTED) {
+            this.userFormValueChangesSubs?.unsubscribe();
             this.fulfillUserForm(this.userSelected);
             this.onUserFormFirstChange();
             this.getStatesList(this.userSelected.country);
@@ -54,7 +57,7 @@ export class UserInformationsContainerComponent extends UserFormController imple
     }
         
     private onUserFormFirstChange() {
-        this.userForm.valueChanges
+        this.userFormValueChangesSubs = this.userForm.valueChanges
             .pipe(take(1))
             .subscribe(() => this.onUserFormFirstChangeEmitt.emit());
     };
