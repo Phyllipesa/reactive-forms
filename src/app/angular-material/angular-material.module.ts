@@ -7,10 +7,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { 
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogTitle,
+        MatDialogContent,
+    } from '@angular/material/dialog';
 
 @NgModule({
     imports: [
@@ -19,6 +25,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatIconModule,
         MatInputModule,
         MatRadioModule,
+        MatDialogTitle,
+        MatDialogClose,
+        MatButtonModule,
+        MatDialogContent,
+        MatDialogActions,
         MatFormFieldModule,
         MatDatepickerModule,
         MatNativeDateModule,
@@ -30,6 +41,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatIconModule,
         MatInputModule,
         MatRadioModule,
+        MatDialogTitle,
+        MatDialogClose,
+        MatButtonModule,
+        MatDialogContent,
+        MatDialogActions,
         MatFormFieldModule,
         MatDatepickerModule,
         MatNativeDateModule,
