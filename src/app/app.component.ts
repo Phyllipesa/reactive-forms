@@ -118,6 +118,7 @@ export class AppComponent implements OnInit {
                     if (this.userSelectedIndex === undefined) return;
 
                     this.usersList[this.userSelectedIndex] = newUserResponse;
+                    this.userSelected = structuredClone(newUserResponse);
                 }
             );
     };
