@@ -10,6 +10,7 @@ import { PhoneTypeEnum } from "../../enums/phone-type.enum";
 import { DependentsList } from "../../type/dependents-list";
 import { preparePhoneList } from "../../utils/prepare-phone-list";
 import { prepareAddressList } from "../../utils/prepared-address-list";
+import { UserFormRawValueService } from "../../services/user-form-raw-value.service";
 import { convertPtBrDateToDateObj } from "../../utils/convert-pt-br-date-to-date-obj";
 import { requiredAddressValidator } from "../../utils/user-form-validators/required-address-validator";
 
@@ -18,10 +19,12 @@ export class UserFormController {
     
     private emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    private _fb = inject(FormBuilder);
+    private readonly _fb = inject(FormBuilder);
+    private readonly _userFormRawValueService = inject(UserFormRawValueService);
 
     constructor() {
         this.createUserForm();
+        this.watchUserFormValueChangesAndUpdateService();
     };
 
     get generalInformations() {
@@ -91,8 +94,8 @@ export class UserFormController {
 
         return this._fb.group({
             name: [dependent.name, Validators.required],
-            age: [dependent.age, Validators.required],
-            document: [dependent.document, Validators.required],
+            age: [dependent.age.toString(), Validators.required],
+            document: [dependent.document.toString(), Validators.required],
         });
     };
 
@@ -185,5 +188,10 @@ export class UserFormController {
             }),
             dependentsList: this._fb.array([]),
         });
+    };
+
+    private watchUserFormValueChangesAndUpdateService() {
+        this.userForm.valueChanges.subscribe(() => 
+            this._userFormRawValueService.userFormRawValue = this.userForm.getRawValue());
     };
 };
