@@ -6,6 +6,8 @@ import { IUserFormPhone } from "../interfaces/user-form/user-form-phone";
 import { IUserFormAddress } from "../interfaces/user-form/user-form-address";
 import { convertDateObjToPtBrDate } from "./convert-date-obj-to-pt-br-date";
 import { IUserFormGeneralInformations } from "../interfaces/user-form/user-form-general-informations";
+import { IUserFormDependent } from "../interfaces/user-form/user-form-dependent";
+import { DependentsList } from "../type/dependents-list";
 
 export const convertUserFormToUser = (userForm: IUserForm): IUser => {
     let newUser: Partial<IUser> = {} as IUser;
@@ -13,6 +15,7 @@ export const convertUserFormToUser = (userForm: IUserForm): IUser => {
     newUser = { ...convertGeneralInformations(userForm.generalInformations) };
     newUser.phoneList = [ ...convertPhoneList(userForm.contactInformations.phoneList) ];
     newUser.addressList = [ ... convertAddresList(userForm.contactInformations.addressList) ];
+    newUser.dependentsList = [ ... convertDependentsList(userForm.dependentsList) ];
 
     return newUser as IUser;
 };
@@ -56,4 +59,16 @@ const convertAddresList = (addressList: IUserFormAddress[]): AddressList => {
     );
 
     return newUserAddressList;
+};
+
+const convertDependentsList = (dependentsList: IUserFormDependent[]): DependentsList => {
+    const newUserDependentsList: DependentsList = dependentsList.map(
+        (dependent: IUserFormDependent) => ({
+            name: dependent.name,
+            age: Number(dependent.age),
+            document: Number(dependent.document),
+        })
+    );
+
+    return newUserDependentsList;
 };
