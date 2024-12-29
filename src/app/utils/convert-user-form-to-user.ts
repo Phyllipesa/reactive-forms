@@ -1,5 +1,6 @@
 import { IUser } from "../interfaces/user/user";
 import { IUserForm } from "../interfaces/user-form/user-form";
+import { convertDateObjToPtBrDate } from "./convert-date-obj-to-pt-br-date";
 import { IUserFormGeneralInformations } from "../interfaces/user-form/user-form-general-informations";
 
 export const convertUserFormToUser = (userForm: IUserForm): IUser => {
@@ -22,6 +23,6 @@ const convertGeneralInformations = (
         state: generalInformations.state,
         maritalStatus: generalInformations.maritalStatus,
         monthlyIncome: generalInformations.monthlyIncome,
-        birthDate: '',
+        birthDate: convertDateObjToPtBrDate(generalInformations.birthDate),
     };
 };
