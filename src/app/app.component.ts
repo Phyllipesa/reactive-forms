@@ -8,6 +8,7 @@ import { IUser } from './interfaces/user/user';
 import { UserService } from './services/users.service';
 import { UserListResponse } from './type/user-list-response';
 import { UpdateUserService } from './services/update-user-service';
+import { convertUserFormToUser } from './utils/convert-user-form-to-user';
 import { IDialogConfirmationData } from './interfaces/dialog-confirmation-data';
 import { UserFormRawValueService } from './services/user-form-raw-value.service';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
@@ -109,7 +110,7 @@ export class AppComponent implements OnInit {
     };
 
     private saveUserInfos() {
-        const newUser: IUser = this.convertUserFormToUser();
+        const newUser: IUser = convertUserFormToUser(this._userFormRawValueService.userFormRawValue);
 
         this._updateUserService.updateUser(newUser)
             .subscribe(
@@ -119,10 +120,5 @@ export class AppComponent implements OnInit {
                     this.usersList[this.userSelectedIndex] = newUserResponse;
                 }
             );
-    };
-    
-    private convertUserFormToUser(): IUser {
-        console.log(this._userFormRawValueService.userFormRawValue);
-        return {} as IUser;
     };
 }
