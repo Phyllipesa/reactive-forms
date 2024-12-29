@@ -24,36 +24,32 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.watchCountryFormChangeAndFilter();
         this.watchStateFormChangeAndFilter();
-    }
+    };
 
     ngOnChanges(changes: SimpleChanges) {
         this.countriesListFiltered = this.countriesList;
         this.statesListFiltered = this.statesList;
-    }
+    };
 
     get maritalStatusArray() {
         return maritalStatusArray;
-    }
+    };
 
     get emailControl(): FormControl {
         return this.userForm.get('generalInformations.email') as FormControl;
-    }
+    };
 
     get countryControl(): FormControl {
         return this.userForm.get('generalInformations.country') as FormControl;
-    }
+    };
 
     get stateControl(): FormControl {
         return this.userForm.get('generalInformations.state') as FormControl;
-    }
+    };
 
     onCountrySelected(event: MatAutocompleteSelectedEvent) {
         this.onCountrySelectedEmitt.emit(event.option.value);
-    }
-
-    onStateSelected(event: MatAutocompleteSelectedEvent) {
-        console.log(event.option.value);
-    }
+    };
 
     /**
      * Passando "this.filterCountriesList" o subscribe não sabe o contexto do "this.filterCountriesList"
@@ -66,11 +62,11 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     private watchCountryFormChangeAndFilter() {
         this.countryControl.valueChanges.subscribe(this.filterCountriesList.bind(this));
         // this.countryControl.valueChanges.subscribe((value: string ) => this.filterCountriesList(value));
-    }
+    };
 
     private watchStateFormChangeAndFilter() {
         this.stateControl.valueChanges.subscribe(this.filterStatesList.bind(this));
-    }
+    };
 
     private filterCountriesList(searchTerm: string) {
         if(!searchTerm) return;
@@ -78,7 +74,7 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
         this.countriesListFiltered = this.countriesList.filter(
             (country) => country.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
         );
-    }
+    };
 
     private filterStatesList(searchTerm: string) {
         if(!searchTerm) return;
@@ -86,5 +82,5 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
         this.statesListFiltered = this.statesList.filter(
             (state) => state.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
         );
-    }
+    };
 }
