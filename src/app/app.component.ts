@@ -89,6 +89,7 @@ export class AppComponent implements OnInit {
     };
 
     onEditButton() {
+        this.userSelected = structuredClone(this.userSelected);
         this.isInEditMode = true;
     };
 
@@ -110,7 +111,10 @@ export class AppComponent implements OnInit {
     };
 
     private saveUserInfos() {
+        console.log('antes', structuredClone(this.userSelected));
+        
         const newUser: IUser = convertUserFormToUser(this._userFormRawValueService.userFormRawValue);
+        console.log('depois', structuredClone(newUser));
 
         this._updateUserService.updateUser(newUser)
             .subscribe(
