@@ -37,8 +37,7 @@ const convertGeneralInformations = (
 
 const convertPhoneList = (phoneList: IUserFormPhone[]): PhoneList => {
     const newUserPhoneList: PhoneList = phoneList
-        .map(
-            (phone: IUserFormPhone) => ({
+        .map((phone: IUserFormPhone) => ({
             type: phone.type,
             internationalCode: '+' + phone.number.substring(0, 2),
             areaCode: phone.number.substring(2, 4),
@@ -50,16 +49,17 @@ const convertPhoneList = (phoneList: IUserFormPhone[]): PhoneList => {
 };
 
 const convertAddresList = (addressList: IUserFormAddress[]): AddressList => {
-    const newUserAddressList: AddressList = addressList.map(
-        (address: IUserFormAddress) => ({
-            type: address.type,
-            street: address.street,
-            complement: address.complement,
-            country: address.country,
-            state: address.state,
-            city: address.city,
-        })
-    );
+    const newUserAddressList: AddressList = addressList
+        .map((address: IUserFormAddress) => ({
+                type: address.type,
+                street: address.street,
+                complement: address.complement,
+                country: address.country,
+                state: address.state,
+                city: address.city,
+            })
+        )
+        .filter((address) => address.street !== '' );
 
     return newUserAddressList;
 };
