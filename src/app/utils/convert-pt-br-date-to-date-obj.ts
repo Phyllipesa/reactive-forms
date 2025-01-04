@@ -3,11 +3,11 @@ export const convertPtBrDateToDateObj = (date: string): Date | null => {
 
     const [day, month, year] = date.split('/').map(Number);
 
-    return new Date(Number(year), Number(month) - 1, Number(day));
-
     if (isValidDate(day, month, year)) {
         return new Date(year, month, day);
     }
+
+    return null;
 }
 
 const isValidDate = (day: number, month: number, year: number): boolean => {
