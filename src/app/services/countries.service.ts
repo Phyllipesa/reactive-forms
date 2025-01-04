@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+
 import { map, Observable } from 'rxjs';
-import { ICountriesResponse } from '../interfaces/countries-response/countries-response';
+
 import { CountriesList } from '../type/countries-list';
+import { ICountriesResponse } from '../interfaces/countries-response/countries-response';
 
 @Injectable({
     providedIn: 'root',

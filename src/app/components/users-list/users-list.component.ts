@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { UserListResponse } from '../../type/user-list-response';
 
 @Component({

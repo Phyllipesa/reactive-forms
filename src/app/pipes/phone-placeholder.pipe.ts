@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 import { PhoneTypeEnum } from '../enums/phone-type.enum';
 
 @Pipe({

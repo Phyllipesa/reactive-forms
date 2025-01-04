@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { IUser } from "../interfaces/user/user";
+
 import { map, Observable } from "rxjs";
+
+import { IUser } from "../interfaces/user/user";
 
 @Injectable({
     providedIn: 'root'

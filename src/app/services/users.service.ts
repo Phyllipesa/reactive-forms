@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
+
 import { Observable } from "rxjs";
+
 import { usersList } from "../data/usersList";
 import { UserListResponse } from "../type/user-list-response";
 

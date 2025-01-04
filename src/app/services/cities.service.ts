@@ -1,6 +1,9 @@
 import { HttpClient } from "@angular/common/http";
+
 import { Injectable } from "@angular/core";
+
 import { map, Observable } from "rxjs";
+
 import { CitiesList } from "../type/cities-list";
 import { ICitiesResponse } from "../interfaces/cities-response/cities-response";
 

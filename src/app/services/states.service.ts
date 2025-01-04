@@ -1,8 +1,11 @@
 import { HttpClient } from "@angular/common/http";
+
 import { Injectable } from "@angular/core";
+
 import { map, Observable } from "rxjs";
-import { IStatesResponse } from "../interfaces/states-response/states-response";
+
 import { StatesList } from "../type/states-list";
+import { IStatesResponse } from "../interfaces/states-response/states-response";
 
 @Injectable({
     providedIn: 'root'
