@@ -14,13 +14,13 @@ export class DependentsListEditComponent {
 
     get dependentsList(): FormArray {
         return this.userForm.get('dependentsList') as FormArray;
-    };
+    }
 
     addDependent() {
         this.onAddDependentEmitt.emit();
-    };
+    }
 
     removeDependent(dependentIndex: number) {
         this.onRemoveDependentEmitt.emit(dependentIndex);
-    };
+    }
 }

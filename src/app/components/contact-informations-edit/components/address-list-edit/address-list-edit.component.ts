@@ -11,5 +11,5 @@ export class AddressListEditComponent {
 
     get addressList(): FormArray {
         return this.userForm.get('contactInformations.addressList') as FormArray;
-    };
+    }
 }

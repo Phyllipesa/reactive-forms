@@ -15,13 +15,13 @@ export class ButtonsContainerComponent {
 
     onSaveButton() {
         this.onSaveButtonEmitt.emit();
-    };
+    }
 
     onEditButton() {
         this.onEditButtonEmitt.emit();
-    };
+    }
 
     onCancelButton() {
         this.onCancelButtonEmitt.emit();
-    };
+    }
 }

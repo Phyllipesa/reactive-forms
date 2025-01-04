@@ -17,5 +17,5 @@ export class UpdateUserService {
         }).pipe(
             map((updateUserResponse) => updateUserResponse.body)
         );
-    };
+    }
 }

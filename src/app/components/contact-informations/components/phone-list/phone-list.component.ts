@@ -20,7 +20,7 @@ export class PhoneListComponent implements OnChanges {
 		if (PHONE_LIST_LOADED) {
 			this.preparePhoneListToDisplay();
 		};
-	};
+	}
 
 	preparePhoneListToDisplay() {
 		this.phoneListToDisplay = [];
@@ -30,5 +30,5 @@ export class PhoneListComponent implements OnChanges {
 		preparePhoneList(originalUserPhoneList, true, (phone) => {
 			this.phoneListToDisplay.push(phone);
 		});
-	};
-};
+	}
+}

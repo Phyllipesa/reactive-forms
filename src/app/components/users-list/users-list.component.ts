@@ -20,5 +20,5 @@ export class UsersListComponent {
 
 		this.userSelectedIndex = userIndex;
 		this.onUserSelectedEmitt.emit(userIndex);
-	};
+	}
 }

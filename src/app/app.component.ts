@@ -33,14 +33,14 @@ export class AppComponent implements OnInit {
         private readonly _updateUserService: UpdateUserService,
         private readonly _matDialog: MatDialog,
         private readonly _userFormRawValueService: UserFormRawValueService,
-    ) {};
+    ) {}
 
     ngOnInit() {
         this._usersService
             .getUsers()
             .pipe(take(1))
             .subscribe((usersListResponse: any) => this.usersList = usersListResponse);
-    };
+    }
 
     onUserSelected(userIndex: number) {
         const userFound = this.usersList[userIndex];
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
             this.userSelectedIndex = userIndex;
             this.userSelected = structuredClone(userFound);
         };
-    };
+    }
 
     onCancelButton() {
         if (this.userFormUpdated) {
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
         else {
             this.isInEditMode = false;
         };
-    };
+    }
 
     onSaveButton() {
         this.openConfirmationDialog(
@@ -86,20 +86,20 @@ export class AppComponent implements OnInit {
                 this.userFormUpdated = false;
             }
         );
-    };
+    }
 
     onEditButton() {
         this.userSelected = structuredClone(this.userSelected);
         this.isInEditMode = true;
-    };
+    }
 
     onFormStatusChange(formStatus: boolean) {
         setTimeout(() => this.enableSaveButton = formStatus, 0);
-    };
+    }
 
     onUserFormFirstChange() {
         this.userFormUpdated = true;
-    };
+    }
 
     private openConfirmationDialog(
         data: IDialogConfirmationData,
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
 
         const dialogRef = this._matDialog.open(ConfirmationDialogComponent, { data });
         dialogRef.afterClosed().subscribe(callback);
-    };
+    }
 
     private saveUserInfos() {
         const newUser: IUser = convertUserFormToUser(this._userFormRawValueService.userFormRawValue);
@@ -122,5 +122,5 @@ export class AppComponent implements OnInit {
                     this.userSelected = structuredClone(newUserResponse);
                 }
             );
-    };
+    }
 }

@@ -10,8 +10,8 @@ export const maritalStatusArray = Object.keys(maritalStatusDescriptionMap).map(N
     return {
         code: key,
         description: maritalStatusDescriptionMap[key as MaritalStatusEnum]
-    }
-})
+    };
+});
 
 // console.log(maritalStatusArray)
 // Saida:

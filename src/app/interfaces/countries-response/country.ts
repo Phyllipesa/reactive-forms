@@ -3,4 +3,4 @@ export interface ICountry {
     iso2: string;
     long: number;
     lat: number;
-}
+};

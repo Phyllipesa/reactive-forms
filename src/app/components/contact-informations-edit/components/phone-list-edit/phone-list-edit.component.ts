@@ -12,5 +12,5 @@ export class PhoneListEditComponent {
 
     get phoneList() {
         return this.userForm.get('contactInformations.phoneList') as FormArray;
-    };
+    }
 }

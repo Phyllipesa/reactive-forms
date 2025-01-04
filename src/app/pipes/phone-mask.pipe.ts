@@ -14,5 +14,5 @@ export class PhoneMaskPipe implements PipeTransform {
         };
 
         return phoneMaskMap[phoneType as PhoneTypeEnum];
-    };
+    }
 }

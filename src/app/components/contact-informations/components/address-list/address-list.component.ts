@@ -20,7 +20,7 @@ export class AddressListComponent implements OnChanges {
         if (ADDRESS_LIST_LOADED) {
             this.prepareAddressListToDisplay();
         };
-    };
+    }
 
     private prepareAddressListToDisplay() {
         this.addressListToDisplay = [];
@@ -30,6 +30,6 @@ export class AddressListComponent implements OnChanges {
         prepareAddressList(originalAddressList, true, (address) => {
             this.addressListToDisplay.push(address);
         });
-    };
-};
+    }
+}
 
