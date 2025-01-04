@@ -2,12 +2,13 @@ import { IUser } from "../interfaces/user/user";
 import { IUserForm } from "../interfaces/user-form/user-form";
 import { PhoneList } from "../type/phone-list";
 import { AddressList } from "../type/address-list";
+import { formatNumber } from "./format-number";
 import { IUserFormPhone } from "../interfaces/user-form/user-form-phone";
+import { DependentsList } from "../type/dependents-list";
 import { IUserFormAddress } from "../interfaces/user-form/user-form-address";
+import { IUserFormDependent } from "../interfaces/user-form/user-form-dependent";
 import { convertDateObjToPtBrDate } from "./convert-date-obj-to-pt-br-date";
 import { IUserFormGeneralInformations } from "../interfaces/user-form/user-form-general-informations";
-import { IUserFormDependent } from "../interfaces/user-form/user-form-dependent";
-import { DependentsList } from "../type/dependents-list";
 
 export const convertUserFormToUser = (userForm: IUserForm): IUser => {
     let newUser: Partial<IUser> = {} as IUser;
@@ -38,9 +39,9 @@ const convertPhoneList = (phoneList: IUserFormPhone[]): PhoneList => {
     const newUserPhoneList: PhoneList = phoneList.map(
         (phone: IUserFormPhone) => ({
         type: phone.type,
-        internationalCode: phone.number.substring(0, 2),
+        internationalCode: '+' + phone.number.substring(0, 2),
         areaCode: phone.number.substring(2, 4),
-        number: phone.number.substring(4),
+        number: formatNumber(phone.number.substring(4)),
     }));
 
     return newUserPhoneList;
